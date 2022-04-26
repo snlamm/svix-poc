@@ -2,11 +2,12 @@ Steps to get this POC running:
 
 First, get the svix-server running:
 1. clone https://github.com/svix/svix-webhooks
-2. set an arbitrary jwt secret in `server/svix-server/config.toml`
-3. cd into `./server` and run `docker-compose up` (note: if the wait_for script fails in the Dockerfile, replace it with `sleep 10`)
-4. install [rust](https://www.rust-lang.org/tools/install)
-5. cd into the `server/svix-server` directory and run `cargo run jwt generate`.
+2. cd into `./server` and run `docker-compose up` (note: if the wait_for script fails in the Dockerfile, replace it with `sleep 10`)
+3. install [rust](https://www.rust-lang.org/tools/install)
+4. cd into the `server/svix-server` directory and run `cargo run jwt generate`.
   This will generate a jwt token that can be used to interact with the svix-server.
+
+(See the [docs](https://github.com/svix/svix-webhooks) for how to change environment variables - such as the jwt secret, whitelabel_headers, etc.)
 
 Second, set up this svix-poc repository
 1. In services/svix/router.ts, set the jwt token you just generated
