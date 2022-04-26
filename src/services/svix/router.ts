@@ -4,6 +4,10 @@ import { Svix } from 'svix';
 const jwtToken = '';
 const appId = '';
 
+const svix = new Svix(jwtToken, {
+  serverUrl: 'http://localhost:8071',
+});
+
 /**
  * Router for /svix
  */
@@ -11,10 +15,6 @@ export const getRouter = (): express.Router => {
   const router = express.Router();
 
   router.post('/app', async (req, res) => {
-    const svix = new Svix(jwtToken, {
-      serverUrl: 'http://localhost:8071',
-    });
-
     const { name } = req.body;
 
     const app = await svix.application.create({ name });
@@ -23,9 +23,6 @@ export const getRouter = (): express.Router => {
   });
 
   router.post('/message', async (req, res) => {
-    const svix = new Svix(jwtToken, {
-      serverUrl: 'http://localhost:8071',
-    });
     const message = await svix.message.create(appId, {
       eventType: 'random.greeting',
       payload: {
@@ -39,9 +36,6 @@ export const getRouter = (): express.Router => {
   router.post('/endpoint', async (req, res) => {
     const { url } = req.body;
 
-    const svix = new Svix(jwtToken, {
-      serverUrl: 'http://localhost:8071',
-    });
     const endpoint = await svix.endpoint.create(appId, {
       url,
       version: 1,
@@ -55,10 +49,6 @@ export const getRouter = (): express.Router => {
   });
 
   router.post('/event', async (req, res) => {
-    const svix = new Svix(jwtToken, {
-      serverUrl: 'http://localhost:8071',
-    });
-
     const eventTypeOut = await svix.eventType.create({
       description: 'A nice greeting',
       schemas: {
@@ -82,10 +72,6 @@ export const getRouter = (): express.Router => {
   });
 
   router.get('/endpoints', async (req, res) => {
-    const svix = new Svix(jwtToken, {
-      serverUrl: 'http://localhost:8071',
-    });
-
     const listResponseEndpointOut = await svix.endpoint.list(appId);
 
     res.json({ listResponseEndpointOut });
