@@ -5,7 +5,7 @@ const jwtToken = '';
 const appId = '';
 
 /**
- * Router for /examples
+ * Router for /svix
  */
 export const getRouter = (): express.Router => {
   const router = express.Router();
