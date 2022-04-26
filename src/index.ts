@@ -1,16 +1,16 @@
 import express from 'express';
-import { getRouter as getExamplesRouter } from './services/exampleRest/router';
+import { getRouter as getSvixRouter } from './services/svix/router';
 
 const app = express();
-const port = 3002;
+const port = 3000;
 
 // use JSON to pass data around
 app.use(express.json());
 
-app.use('/examples', getExamplesRouter());
+app.use('/svix', getSvixRouter());
 
 app.get('/ping', (req, res) => res.json('pong'));
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`app listening at http://localhost:${port}`);
 });
